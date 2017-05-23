@@ -1,0 +1,102 @@
+{
+  "name": {
+    "pt_BR": "inserir uma nova linha em uma planilha",
+    "en": "insert a new row in a spreadsheet"
+  },
+  "action_key": "insert_line",
+  "description": {
+    "pt_BR": "inserir uma nova linha em uma planilha",
+    "en": "insert a new row in a spreadsheet"
+  },
+  "action_fields": {
+    "fields": [
+      {
+        "key": "spreadsheetId",
+        "name": {"pt_BR": "planilha", "en": "spreadsheet"},
+        "description": {
+          "pt_BR": "planilha.",
+          "en": "spreadsheet."
+        },
+        "label": {
+          "pt_BR": "Selecione a planilha",
+          "en": "Select the spreadsheet"
+        },
+        "placeholder": {
+          "pt_BR": "Selecione a planilha",
+          "en": "Select the spreadsheet"
+        },
+        "required": true,
+        "visible": true,
+        "advanced": false,
+        "field_type": "dropdown",
+        "data_type": "string",
+        "list": {
+          "type": "remote",
+          "helper_method": "google_sheets_planilha_list"
+        },
+        "not_include_field_in_request": true
+      },
+      {
+        "key": "sheetId",
+        "name": {"pt_BR": "folha", "en": "sheet"},
+        "description": {
+          "pt_BR": "folha.",
+          "en": "sheet."
+        },
+        "label": {
+          "pt_BR": "Selecione a folha",
+          "en": "Select the sheet"
+        },
+        "placeholder": {
+          "pt_BR": "Selecione a folha",
+          "en": "Select the sheet"
+        },
+        "required": true,
+        "visible": true,
+        "advanced": false,
+        "field_type": "dropdown",
+        "data_type": "string",
+        "list": {
+          "type": "remote",
+          "helper_method": "google_sheets_folha_list"
+        },
+        "not_include_field_in_request": true
+      },
+      {
+        "key": "cabecalho",
+        "name": {"pt_BR": "cabecalho", "en": "header"},
+        "description": {
+          "pt_BR": "cabecalho da folha.",
+          "en": "sheet entry header."
+        },
+        "required": true,
+        "visible": true,
+        "advanced": false,
+        "field_type": "custom",
+        "data_type": "string",
+        "not_include_field_in_request": true
+      }
+    ]
+  },
+  "request": {
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1::append",
+    "json_api": true,
+    "pre_hooks": {
+      "hooks": [
+        {
+          "name": "Atualizar Cabeçalho",
+          "request": {
+            "verb": "post",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!1:1:append",
+            "params": [
+              {"field": "values", "value": "{cabecalho}", "type": "array"}
+            ]
+          }
+        }
+      ],
+      "append_fields": [
+        {"field": "values", "value": "{valores}", "type": "array"}
+      ]
+    }
+  }
+}
