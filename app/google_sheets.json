@@ -27,7 +27,8 @@
       "access_token_placement": "query_string",
       "access_token_on_query_string_replacement": "access_token",
       "scope": [
-        "https://www.googleapis.com/auth/spreadsheets.readonly",
+        "https://www.googleapis.com/auth/drive",
+        "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/spreadsheets"
       ],
       "response_type": "code",
