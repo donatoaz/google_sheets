@@ -3,7 +3,7 @@
     "pt_BR": "inserir uma nova linha em uma planilha",
     "en": "insert a new row in a spreadsheet"
   },
-  "action_key": "insert_line",
+  "action_key": "new_row",
   "description": {
     "pt_BR": "inserir uma nova linha em uma planilha",
     "en": "insert a new row in a spreadsheet"
@@ -32,7 +32,7 @@
         "data_type": "string",
         "list": {
           "type": "remote",
-          "helper_method": "google_sheets_planilha_list"
+          "helper_method": "google_sheets_spreadsheet_list"
         },
         "not_include_field_in_request": true
       },
@@ -58,7 +58,7 @@
         "data_type": "string",
         "list": {
           "type": "remote",
-          "helper_method": "google_sheets_folha_list"
+          "helper_method": "google_sheets_sheet_list"
         },
         "not_include_field_in_request": true
       },
