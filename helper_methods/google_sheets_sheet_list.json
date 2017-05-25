@@ -8,11 +8,10 @@
       "params": {},
         "mapping": {
         "label": {
-          "fields": ["properties.title"]
+          "fields": ["sheets.properties.title"]
         },
         "value": {
-          "field": "sheetId",
-          "sufix": "#"
+          "field": "sheets.properties.title"
         }
       }
     }

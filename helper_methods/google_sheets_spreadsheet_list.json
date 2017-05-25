@@ -3,14 +3,14 @@
   "helper_method_key": "google_sheets_spreadsheet_list",
   "requests": [
     {
-      "method_name": "/v4/spreadsheets",
+      "method_name": "https:www.googleapis.com/drive/v3/files/?q=mimeType%3D%27application/vnd.google-apps.spreadsheet%27",
       "params": {},
         "mapping": {
         "label": {
-          "fields": ["properties.title"]
+          "fields": ["files.name"]
         },
         "value": {
-          "field": "spreadsheetId"
+          "field": "files.id"
         }
       }
     }

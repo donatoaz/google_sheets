@@ -79,23 +79,23 @@
     ]
   },
   "request": {
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1::append",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1::append?valueInputOption=RAW",
     "json_api": true,
     "pre_hooks": {
       "hooks": [
         {
           "name": "Atualizar Cabeçalho",
           "request": {
-            "verb": "post",
-            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!1:1:append",
+            "verb": "put",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1?valueInputOption=RAW",
             "params": [
-              {"field": "values", "value": "{cabecalho}", "type": "array"}
+              {"field": "values", "value": "[{cabecalho}]", "type": "array"}
             ]
           }
         }
       ],
       "append_fields": [
-        {"field": "values", "value": "{valores}", "type": "array"}
+        {"field": "values", "value": "[{valores}]", "type": "array"}
       ]
     }
   }
