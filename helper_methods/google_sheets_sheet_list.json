@@ -1,0 +1,20 @@
+{
+  "name": "lista das folhas de uma planilha",
+  "helper_method_key": "google_sheets_sheet_list",
+  "requests": [
+    {
+      "method_name": "/v4/spreadsheets/{spreadsheetId}",
+      "extra_params": [{"key": "spreadsheetId"}],
+      "params": {},
+        "mapping": {
+        "label": {
+          "fields": ["properties.title"]
+        },
+        "value": {
+          "field": "sheetId",
+          "sufix": "#"
+        }
+      }
+    }
+  ]
+}

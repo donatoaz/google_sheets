@@ -64,16 +64,16 @@
       },
       {
         "key": "cabecalho",
-        "name": {"pt_BR": "cabecalho", "en": "header"},
+        "name": {"pt_BR": "cabeçalho", "en": "header"},
         "description": {
-          "pt_BR": "cabecalho da folha.",
+          "pt_BR": "cabeçalho da folha.",
           "en": "sheet entry header."
         },
         "required": true,
         "visible": true,
         "advanced": false,
         "field_type": "custom",
-        "data_type": "string",
+        "data_type": "array",
         "not_include_field_in_request": true
       }
     ]
