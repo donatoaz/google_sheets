@@ -1,0 +1,62 @@
+{
+  "name": {
+    "pt_BR": "nova linha adicionada",
+    "en": "new row added"
+  },
+  "trigger_key": "new_row",
+  "description": {
+    "pt_br": "Para cada nova linha adicionado",
+    "en": "For each new linha added"
+  },
+  "trigger_fields": {
+    "type": "local",
+    "fields": [
+      {
+        "key": "values",
+        "name": "values",
+        "description": {"pt_BR": "valores da linha", "en": "row's values"},
+        "field_type": "array"
+      }
+    ]
+  },
+  "configuration_fields":
+    [{
+      "key": "page_id", "name": {"pt_BR": "Listar Planilhas", "en": "Spreadsheet list"},
+      "label": {"pt_BR": "Selecionar planilha no campo abaixo", "en": "Select spreadsheet"},
+      "placeholder": {"pt_BR": "Selecionar planilha...", "en": "Select spreadsheet"},
+      "description": {"pt_BR": "Selecione a planilha que será usado para recuperar as informações",
+                  "en": "Select spreadsheet that will be used to retrieve the information"},
+      "required": true, "visible": true,
+      "field_type": "dropdown", "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_spreadsheet_list"
+      }
+    },
+      {
+      "key": "form_id", "name": {"pt_BR": "Listar folhas", "en": "Sheet list"},
+      "label": {"pt_BR": "Selecionar folha no campo abaixo", "en": "Select sheet"},
+      "placeholder": {"pt_BR": "Selecionar folha...", "en": "Select sheet"},
+      "description": {"pt_BR": "Selecione o folha que será usado para recuperar as informações",
+                  "en": "Select sheet that will be used to retrieve the information"},
+      "required": true, "visible": true,
+      "field_type": "dropdown", "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_sheet_list"
+      }
+    }],
+  "trigger_type": "webhook",
+  "request": {
+    "method_name": "https://www.googleapis.com/drive/v3/files/{spreadsheetId}/watch",
+    "extra_params": [{"key": "spreadsheetId"}],
+    "params": {
+      "id": "client_id_para_a_pluga",
+      "type": "web_hook",
+      "address": "https://pluga.com/notifications"
+    }
+  },
+  "webhook": {
+    "message_type": "object"
+  }
+}
