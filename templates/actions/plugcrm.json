@@ -1,0 +1,25 @@
+[
+  {
+    "app_source": "plugcrm",
+    "app_target": "google_sheets",
+    "filters": [[{"field": "win", "condition": "contains", "value": null}]],
+    "mapper": [
+      {"key": "nome_formulario", "content": "plugcrm_negocio_criado"},
+      {"key": "email_contato", "content": "{{contact.email}}"}
+    ],
+    "trigger_key": "created_deal",
+    "action_key": "add_row",
+    "name": {"pt_BR": "A cada negócio criado na PlugCRM, incluir uma nova linha numa folha de uma planilha do GoogleSheets",
+          "en": "For every new created deal on PlugCRM, include a new line in a sheet GoogleSheets's spreadsheet"},
+    "description": {
+      "why_integrate": [{"pt_BR": "O objetivo é ter o sua planilha do GoogleSheets sempre atualizada, sem precisar verificar e atualizar manualmente.",
+                      "en": "The goal is to have your GoogleSheets's sheet flow always up to date without having to manually check and updatey."}],
+      "how_it_works": [{"pt_BR": "A Pluga fica de olho nos novos negócios criados na PlugCRM.",
+                      "en": "Pluga keeps an eye on every created deal on your PlugCRM."},
+                      {"pt_BR": "Quando isto ocorrer, nós incluiremos uma linha numa folha de uma planilha do GoogleSheets.",
+                      "en": "When this occur, we will include a row in sheet the GoogleSheets's spreadsheet."},
+                      {"pt_BR": "Este dado será incluído automaticamente no GoogleSheets e ficará disponível na folha da planilha informada.",
+                      "en": "This data will be automatically included in the GoogleSheets and will be available in the informed spreadsheet's sheet."}]
+    }
+  }
+]
