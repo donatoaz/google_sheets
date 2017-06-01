@@ -10,7 +10,7 @@
   "signup_url": "https://accounts.google.com/SignUp",
   "api_base_uri": {
     "production": {
-      "uri": "https://sheets.googleapis.com",
+      "uri": "https://{base_url_prefix}.googleapis.com",
       "label": "Produção",
       "default": true
     }
@@ -35,7 +35,10 @@
       "access_type": "offline"
     },
     "ping_request": {
-      "method_name": "/drive/v3/files"
+      "method_name": "/drive/v3/files",
+      "params": {
+        "base_url_prefix": "sheets"
+      }
     }
   }
 }
