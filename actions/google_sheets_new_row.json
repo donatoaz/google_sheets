@@ -79,7 +79,7 @@
     ]
   },
   "request": {
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1::append?valueInputOption=RAW",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1:append?valueInputOption=RAW",
     "json_api": true,
     "pre_hooks": {
       "hooks": [

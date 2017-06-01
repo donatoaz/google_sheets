@@ -6,11 +6,11 @@
     "pt_BR":"O Google Sheets é uma ferramenta que permite aos usuários criar, editar e colaborar com documentos criados a partir do serviço de planilhas online Google Drive. É um super coringa para qualquer micro e pequena empresa, servindo desde CRM até planilha de Gestão de Estoque.",
     "en": "Google Sheets is a web app that allows the user to create, edit and collaborate in documents created on the online spreadsheets service Google Drive. It`s a handy app for any micro or small enterprise, which can be used from CRM to Inventory Management spreadsheets."
   },
-  "website": "https://www.google.com/sheets/about/",
+  "website": "https://www.google.com/sheets/about",
   "signup_url": "https://accounts.google.com/SignUp",
   "api_base_uri": {
     "production": {
-      "uri": "https://sheets.googleapis.com/",
+      "uri": "https://sheets.googleapis.com",
       "label": "Produção",
       "default": true
     }
@@ -27,13 +27,15 @@
       "access_token_placement": "query_string",
       "access_token_on_query_string_replacement": "access_token",
       "scope": [
-        "https://www.googleapis.com/auth/drive",
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/spreadsheets"
       ],
       "response_type": "code",
       "approval_prompt": "force",
       "access_type": "offline"
+    },
+    "ping_request": {
+      "method_name": "/drive/v3/files"
     }
   }
 }
