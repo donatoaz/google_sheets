@@ -80,18 +80,25 @@
   },
   "request": {
     "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1:append",
-    "params": { "valueInputOption": "RAW" },
+    "params": {
+      "base_url_prefix": "sheets",
+      "valueInputOption": "RAW"
+    },
     "json_api": true,
     "pre_hooks": {
       "hooks": [
         {
           "name": "Atualizar Cabeçalho",
           "request": {
-            "verb": "put",
+            "verb": "post",
             "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1?valueInputOption=RAW",
+            "base_uri": "https://sheets.googleapis.com",
             "params": [
               {"field": "values", "value": "[{cabecalho}]", "type": "array"}
-            ]
+            ],
+            "headers": {
+              "X-HTTP-Method-Override": "PUT"
+            }
           }
         }
       ],

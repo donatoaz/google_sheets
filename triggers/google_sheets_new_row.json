@@ -48,9 +48,10 @@
     }],
   "trigger_type": "webhook",
   "request": {
-    "method_name": "https://www.googleapis.com/drive/v3/files/{spreadsheetId}/watch",
+    "method_name": "/drive/v3/files/{spreadsheetId}/watch",
     "extra_params": [{"key": "spreadsheetId"}],
     "params": {
+      "base_url_prefix": "www",
       "id": "client_id_para_a_pluga",
       "type": "web_hook",
       "address": "https://pluga.com/notifications"
