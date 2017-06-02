@@ -5,7 +5,9 @@
     {
       "method_name": "/v4/spreadsheets/{spreadsheetId}",
       "extra_params": [{"key": "spreadsheetId"}],
-      "params": {},
+      "params": {
+        "base_url_prefix": "sheets",
+      },
         "mapping": {
         "label": {
           "fields": ["sheets.properties.title"]

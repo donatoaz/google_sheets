@@ -24,10 +24,9 @@
       "access_token_url": "https://www.googleapis.com/auth/spreadsheet",
       "refresh_token_url": "https://www.googleapis.com/auth/spreadsheet",
       "redirect_uri": "https://manage.pluga.co/oauth2/google_sheets",
-      "access_token_placement": "query_string",
-      "access_token_on_query_string_replacement": "access_token",
+      "access_token_placement": "header_bearer",
       "scope": [
-        "https://www.googleapis.com/auth/drive.file",
+        "https://www.googleapis.com/auth/drive.readonly",
         "https://www.googleapis.com/auth/spreadsheets"
       ],
       "response_type": "code",

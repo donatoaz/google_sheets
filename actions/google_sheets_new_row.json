@@ -63,7 +63,7 @@
         "not_include_field_in_request": true
       },
       {
-        "key": "cabecalho",
+        "key": "values",
         "name": {"pt_BR": "cabeçalho", "en": "header"},
         "description": {
           "pt_BR": "cabeçalho da folha.",
@@ -73,30 +73,33 @@
         "visible": true,
         "advanced": false,
         "field_type": "custom",
-        "data_type": "array",
-        "not_include_field_in_request": true
+        "data_type": "array"
       }
     ]
   },
   "request": {
     "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1:append",
-    "params": { "valueInputOption": "RAW" },
+    "params": {
+      "base_url_prefix": "sheets",
+      "valueInputOption": "RAW"
+    },
     "json_api": true,
     "pre_hooks": {
       "hooks": [
         {
           "name": "Atualizar Cabeçalho",
           "request": {
-            "verb": "put",
+            "verb": "post",
             "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1?valueInputOption=RAW",
+            "base_uri": "https://sheets.googleapis.com",
             "params": [
               {"field": "values", "value": "[{cabecalho}]", "type": "array"}
-            ]
+            ],
+            "headers": {
+              "X-HTTP-Method-Override": "PUT"
+            }
           }
         }
-      ],
-      "append_fields": [
-        {"field": "values", "value": "[{valores}]", "type": "array"}
       ]
     }
   }
