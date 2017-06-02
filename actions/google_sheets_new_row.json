@@ -63,7 +63,7 @@
         "not_include_field_in_request": true
       },
       {
-        "key": "cabecalho",
+        "key": "values",
         "name": {"pt_BR": "cabeçalho", "en": "header"},
         "description": {
           "pt_BR": "cabeçalho da folha.",
@@ -73,8 +73,7 @@
         "visible": true,
         "advanced": false,
         "field_type": "custom",
-        "data_type": "array",
-        "not_include_field_in_request": true
+        "data_type": "array"
       }
     ]
   },
@@ -101,9 +100,6 @@
             }
           }
         }
-      ],
-      "append_fields": [
-        {"field": "values", "value": "[{valores}]", "type": "array"}
       ]
     }
   }
