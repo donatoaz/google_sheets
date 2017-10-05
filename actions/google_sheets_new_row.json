@@ -3,7 +3,7 @@
     "pt_BR": "inserir uma nova linha em uma planilha",
     "en": "insert a new row in a spreadsheet"
   },
-  "action_key": "new_row",
+  "action_key": "insert_row",
   "description": {
     "pt_BR": "inserir uma nova linha em uma planilha",
     "en": "insert a new row in a spreadsheet"
@@ -63,25 +63,50 @@
         "not_include_field_in_request": true
       },
       {
-        "key": "values",
-        "name": {"pt_BR": "cabeçalho", "en": "header"},
+        "key": "rows",
+        "name": {"pt_BR": "dados da planilha", "en": "spreadsheet data"},
         "description": {
-          "pt_BR": "cabeçalho da folha.",
-          "en": "sheet entry header."
+          "pt_BR": "dados da planilha",
+          "en": "spreadsheet datal"
         },
         "required": true,
         "visible": true,
         "advanced": false,
-        "field_type": "custom",
-        "data_type": "array"
+        "field_type": "list",
+        "data_type": "compose_list",
+	"sub_fields": [
+	  {
+	    "key": "headers",
+  	    "name": {"pt_BR": "Cabeçalho", "en": "Header"},
+	    "required": true,
+	    "visible": true,
+	    "advanced": false,
+	    "field_type": "custom_string",
+	    "data_type": "string"
+	  },
+	  {
+	    "key": "values",
+  	    "name": {"pt_BR": "Valor", "en": "Value"},
+	    "required": true,
+	    "visible": true,
+	    "advanced": false,
+	    "field_type": "custom_string",
+	    "data_type": "string"
+	  }
+	]
       }
     ]
   },
   "request": {
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1:append",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetId}'!A1:append",
     "params": {
       "base_url_prefix": "sheets",
-      "valueInputOption": "RAW"
+      "valueInputOption": "RAW",
+      "insertDataOption": "INSERT_ROWS",
+      "values": "{rows.values}"
+    },
+    "headers": {
+      "X-HTTP-Method-Override": "PUT"
     },
     "json_api": true,
     "pre_hooks": {
@@ -90,11 +115,14 @@
           "name": "Atualizar Cabeçalho",
           "request": {
             "verb": "post",
-            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetId}!A1?valueInputOption=RAW",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetId}'!A1",
             "base_uri": "https://sheets.googleapis.com",
-            "params": [
-              {"field": "values", "value": "[{cabecalho}]", "type": "array"}
-            ],
+            "params": {
+              "base_url_prefix": "sheets",
+              "valueInputOption": "RAW",
+              "insertDataOption": "INSERT_ROWS",
+              "value": "{rows.headers}"
+            },
             "headers": {
               "X-HTTP-Method-Override": "PUT"
             }
