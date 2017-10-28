@@ -37,7 +37,7 @@
         "not_include_field_in_request": true
       },
       {
-        "key": "sheetId",
+        "key": "sheetTitle",
         "name": {"pt_BR": "folha", "en": "sheet"},
         "description": {
           "pt_BR": "folha.",
@@ -63,69 +63,62 @@
         "not_include_field_in_request": true
       },
       {
-        "key": "rows",
-        "name": {"pt_BR": "dados da planilha", "en": "spreadsheet data"},
+        "key": "columns",
+        "name": {"pt_BR": "Colunas", "en": "Columns"},
         "description": {
-          "pt_BR": "dados da planilha",
-          "en": "spreadsheet datal"
+          "pt_BR": "Colunas onde serão inseridas as informações.",
+          "en": "Columns where the information will be inserted"
         },
-        "required": true,
+        "required": false,
         "visible": true,
-        "advanced": false,
+        "advanced": true,
         "field_type": "list",
-        "data_type": "compose_list",
-	"sub_fields": [
-	  {
-	    "key": "headers",
-  	    "name": {"pt_BR": "Cabeçalho", "en": "Header"},
-	    "required": true,
-	    "visible": true,
-	    "advanced": false,
-	    "field_type": "custom_string",
-	    "data_type": "string"
-	  },
-	  {
-	    "key": "values",
-  	    "name": {"pt_BR": "Valor", "en": "Value"},
-	    "required": true,
-	    "visible": true,
-	    "advanced": false,
-	    "field_type": "custom_string",
-	    "data_type": "string"
-	  }
-	]
+        "data_type": "array",
+        "sub_field": {
+          "key": "column",
+          "name": {"pt_BR": "Coluna", "en": "Column"},
+          "description": {"pt_BR": "Coluna", "en": "Column"},
+          "required": false,
+          "visible": true,
+          "field_type": "composed",
+          "data_type": "array",
+          "fields": [
+            {"name": "label", "visible": true, "field_type": "string"},
+            {"name": "column", "visible": true, "field_type": "custom"}
+          ]
+        }
+      },
+      {
+        "key": "values"
       }
     ]
   },
   "request": {
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetId}'!A1:append",
+    "verb": "post",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetTitle}!A1:append?valueInputOption=RAW",
     "params": {
-      "base_url_prefix": "sheets",
-      "valueInputOption": "RAW",
-      "insertDataOption": "INSERT_ROWS",
-      "values": "{rows.values}"
+      "spreadsheetId": "{spreadsheetId}",
+      "sheetTitle": "{sheetTitle}",
+      "base_url_prefix": "sheets"
     },
-    "headers": {
-      "X-HTTP-Method-Override": "PUT"
-    },
+    "custom_params": [
+      {"name": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:data]} ]"}
+    ],
     "json_api": true,
     "pre_hooks": {
       "hooks": [
         {
           "name": "Atualizar Cabeçalho",
           "request": {
-            "verb": "post",
-            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetId}'!A1",
-            "base_uri": "https://sheets.googleapis.com",
-            "params": {
-              "base_url_prefix": "sheets",
-              "valueInputOption": "RAW",
-              "insertDataOption": "INSERT_ROWS",
-              "value": "{rows.headers}"
-            },
-            "headers": {
-              "X-HTTP-Method-Override": "PUT"
-            }
+            "verb": "put",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetTitle}!A1?valueInputOption=RAW",
+            "params": [
+              {"field": "spreadsheetId", "value": "{spreadsheetId}"},
+              {"field": "sheetTitle", "value": "{sheetTitle}"},
+              {"field": "base_url_prefix", "value": "sheets"},
+              {"field": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:label]} ]", "custom": true}
+            ],
+            "json_api": true
           }
         }
       ]
