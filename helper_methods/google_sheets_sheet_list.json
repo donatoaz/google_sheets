@@ -6,14 +6,15 @@
       "method_name": "/v4/spreadsheets/{spreadsheetId}",
       "extra_params": [{"key": "spreadsheetId"}],
       "params": {
-        "base_url_prefix": "sheets",
+        "base_url_prefix": "sheets"
       },
-        "mapping": {
+      "response_field": "sheets",
+      "mapping": {
         "label": {
-          "fields": ["sheets.properties.title"]
+          "fields": ["properties.title"]
         },
         "value": {
-          "field": "sheets.properties.title"
+          "field": "properties.title"
         }
       }
     }

@@ -8,12 +8,13 @@
         "base_url_prefix": "www",
         "q": "mimeType='application/vnd.google-apps.spreadsheet'"
       },
+      "response_field": "files",
       "mapping": {
         "label": {
-          "fields": ["files.name"]
+          "fields": ["name"]
         },
         "value": {
-          "field": "files.id"
+          "field": "id"
         }
       }
     }

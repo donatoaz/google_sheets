@@ -18,11 +18,11 @@
   "authentication": {
     "type": "oauth_2",
     "oauth_access_fields": {
-      "client_id": "client_id_para_a_pluga",
-      "client_secret": "client_secret_para_a_pluga",
-      "authorize_url": "https://www.googleapis.com/auth/spreadsheet",
-      "access_token_url": "https://www.googleapis.com/auth/spreadsheet",
-      "refresh_token_url": "https://www.googleapis.com/auth/spreadsheet",
+      "client_id": "client_id_pluga_api",
+      "client_secret": "client_secret_pluga_api",
+      "authorize_url": "https://accounts.google.com/o/oauth2/v2/auth",
+      "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+      "refresh_token_url": "https://www.googleapis.com/oauth2/v4/token",
       "redirect_uri": "https://manage.pluga.co/oauth2/google_sheets",
       "access_token_placement": "header_bearer",
       "scope": [
@@ -30,13 +30,13 @@
         "https://www.googleapis.com/auth/spreadsheets"
       ],
       "response_type": "code",
-      "approval_prompt": "force",
-      "access_type": "offline"
+      "access_type": "offline",
+      "prompt": "consent"
     },
     "ping_request": {
-      "method_name": "/drive/v3/files",
+      "method_name": "/drive/v3/changes/startPageToken",
       "params": {
-        "base_url_prefix": "sheets"
+        "base_url_prefix": "www"
       }
     }
   }
