@@ -95,14 +95,14 @@
   },
   "request": {
     "verb": "post",
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetTitle}!A1:append?valueInputOption=RAW",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1:append?valueInputOption=RAW",
     "params": {
       "spreadsheetId": "{spreadsheetId}",
       "sheetTitle": "{sheetTitle}",
       "base_url_prefix": "sheets"
     },
     "custom_params": [
-      {"name": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:data]} ]"}
+      {"name": "values", "value": "[data.select{|k|/column_/=~k.to_s}.values.map{|v|eval(v)[:data]}]"}
     ],
     "json_api": true,
     "pre_hooks": {
@@ -111,12 +111,12 @@
           "name": "Atualizar Cabeçalho",
           "request": {
             "verb": "put",
-            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetTitle}!A1?valueInputOption=RAW",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1?valueInputOption=RAW",
             "params": [
               {"field": "spreadsheetId", "value": "{spreadsheetId}"},
               {"field": "sheetTitle", "value": "{sheetTitle}"},
               {"field": "base_url_prefix", "value": "sheets"},
-              {"field": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:label]} ]", "custom": true}
+              {"field": "values", "value": "[data.select{|k|/column_/=~k.to_s}.values.map{|v|eval(v)[:label]}]", "custom": true}
             ],
             "json_api": true
           }
