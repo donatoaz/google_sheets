@@ -37,7 +37,7 @@
         "not_include_field_in_request": true
       },
       {
-        "key": "sheetTitle",
+        "key": "sheetId",
         "name": {"pt_BR": "folha", "en": "sheet"},
         "description": {
           "pt_BR": "folha.",
@@ -89,33 +89,51 @@
         }
       },
       {
+        "key": "sheetTitle"
+      },
+      {
         "key": "values"
       }
     ]
   },
   "request": {
     "verb": "post",
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetTitle}!A1:append?valueInputOption=RAW",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1:append?valueInputOption=RAW",
     "params": {
-      "spreadsheetId": "{spreadsheetId}",
-      "sheetTitle": "{sheetTitle}",
-      "base_url_prefix": "sheets"
+      "base_url_prefix": "sheets",
+      "spreadsheetId": "{spreadsheetId}"
     },
     "custom_params": [
+      {"name": "sheetTitle", "value": "URI.encode( data[:sheetTitle] )"},
       {"name": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:data]} ]"}
     ],
     "json_api": true,
     "pre_hooks": {
       "hooks": [
         {
+          "name": "Buscar Sheet",
+          "request": {
+            "verb": "get",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}",
+            "params": [
+              {"field": "spreadsheetId", "value": "{spreadsheetId}", "type": "string"},
+              {"field": "base_url_prefix", "value": "sheets"},
+              {"field": "fields", "value": "sheets/properties", "type": "string"}
+            ],
+            "response_field": ["sheets"],
+            "result_custom": "r = hook_result.select{|h| h[:properties][:sheetId].to_s == data[:sheetId] }[0]; data[:sheetTitle] = r[:properties][:title]; data.delete(:sheetId); r",
+            "json_api": true
+          }
+        },
+        {
           "name": "Atualizar Cabeçalho",
           "request": {
             "verb": "put",
-            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/{sheetTitle}!A1?valueInputOption=RAW",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1?valueInputOption=RAW",
             "params": [
-              {"field": "spreadsheetId", "value": "{spreadsheetId}"},
-              {"field": "sheetTitle", "value": "{sheetTitle}"},
               {"field": "base_url_prefix", "value": "sheets"},
+              {"field": "spreadsheetId", "value": "{spreadsheetId}"},
+              {"field": "sheetTitle", "value": "URI.encode( data[:sheetTitle] )", "custom": true},
               {"field": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:label]} ]", "custom": true}
             ],
             "json_api": true

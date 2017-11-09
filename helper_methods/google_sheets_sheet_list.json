@@ -4,9 +4,10 @@
   "requests": [
     {
       "method_name": "/v4/spreadsheets/{spreadsheetId}",
-      "extra_params": [{"key": "spreadsheetId"}],
       "params": {
-        "base_url_prefix": "sheets"
+        "base_url_prefix": "sheets",
+        "spreadsheetId": "{spreadsheetId}",
+        "fields": "sheets/properties"
       },
       "response_field": "sheets",
       "mapping": {
@@ -14,7 +15,7 @@
           "fields": ["properties.title"]
         },
         "value": {
-          "field": "properties.title"
+          "field": "properties.sheetId"
         }
       }
     }
