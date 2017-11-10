@@ -121,7 +121,10 @@
               {"field": "fields", "value": "sheets/properties", "type": "string"}
             ],
             "response_field": ["sheets"],
-            "result_custom": "r = hook_result.select{|h| h[:properties][:sheetId].to_s == data[:sheetId] }[0]; data[:sheetTitle] = r[:properties][:title]; data.delete(:sheetId); r",
+            "append_params": [
+              {"name": "sheetTitle", "value": "data[:hook].select{|h| h[:properties][:sheetId].to_s == data[:sheetId] }[0][:properties][:title]"}
+            ],
+            "remove_params": ["sheetId"],
             "json_api": true
           }
         },
