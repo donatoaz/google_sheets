@@ -14,8 +14,8 @@
         "key": "spreadsheetId",
         "name": {"pt_BR": "planilha", "en": "spreadsheet"},
         "description": {
-          "pt_BR": "planilha.",
-          "en": "spreadsheet."
+          "pt_BR": "Escolha a planilha em que os dados serão inseridos",
+          "en": "Spreadsheet"
         },
         "label": {
           "pt_BR": "Selecione a planilha",
@@ -40,15 +40,15 @@
         "key": "sheetId",
         "name": {"pt_BR": "folha", "en": "sheet"},
         "description": {
-          "pt_BR": "folha.",
-          "en": "sheet."
+          "pt_BR": "É a aba da sua planilha em que os dados serão inseridos",
+          "en": "Sheet"
         },
         "label": {
-          "pt_BR": "Selecione a folha",
+          "pt_BR": "Selecione a página",
           "en": "Select the sheet"
         },
         "placeholder": {
-          "pt_BR": "Selecione a folha",
+          "pt_BR": "Selecione a página",
           "en": "Select the sheet"
         },
         "required": true,
@@ -66,12 +66,12 @@
         "key": "columns",
         "name": {"pt_BR": "Colunas", "en": "Columns"},
         "description": {
-          "pt_BR": "Colunas onde serão inseridas as informações.",
+          "pt_BR": "Colunas onde serão inseridas as informações",
           "en": "Columns where the information will be inserted"
         },
         "required": false,
         "visible": true,
-        "advanced": true,
+        "advanced": false,
         "field_type": "list",
         "data_type": "array",
         "sub_field": {
@@ -104,8 +104,8 @@
       "spreadsheetId": "{spreadsheetId}"
     },
     "custom_params": [
-      {"name": "sheetTitle", "value": "URI.encode( data[:sheetTitle] )"},
-      {"name": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:data]} ]"}
+      {"name": "sheetTitle", "value": "URI.encode(data[:sheetTitle])"},
+      {"name": "values", "value": "[data.select{|k|/column_/ =~ k.to_s}.values.map{|v|eval(v)[:data]}]"}
     ],
     "json_api": true,
     "pre_hooks": {
@@ -122,7 +122,7 @@
             ],
             "response_field": ["sheets"],
             "append_params": [
-              {"name": "sheetTitle", "value": "data[:hook].select{|h| h[:properties][:sheetId].to_s == data[:sheetId] }[0][:properties][:title]"}
+              {"name": "sheetTitle", "value": "data[:hook].select{|h|h[:properties][:sheetId].to_s == data[:sheetId]}[0][:properties][:title]"}
             ],
             "remove_params": ["sheetId"],
             "json_api": true
@@ -136,8 +136,8 @@
             "params": [
               {"field": "base_url_prefix", "value": "sheets"},
               {"field": "spreadsheetId", "value": "{spreadsheetId}"},
-              {"field": "sheetTitle", "value": "URI.encode( data[:sheetTitle] )", "custom": true},
-              {"field": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:label]} ]", "custom": true}
+              {"field": "sheetTitle", "value": "URI.encode(data[:sheetTitle])", "custom": true},
+              {"field": "values", "value": "[data.select{|k|/column_/ =~ k.to_s}.values.map{|v|eval(v)[:label]}]", "custom": true}
             ],
             "json_api": true
           }
