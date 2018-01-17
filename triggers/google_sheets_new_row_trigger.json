@@ -1,0 +1,123 @@
+{
+  "name": {
+    "pt_BR": "nova linha adicionada",
+    "en": "new row added"
+  },
+  "trigger_key": "new_row",
+  "description": {
+    "pt_br": "Para cada nova linha adicionado",
+    "en": "For each new linha added"
+  },
+  "trigger_fields": {
+    "type": "local",
+    "fields": [
+      {
+        "key": "values",
+        "source": "format_date(source[:values))",
+        "force_source": true,
+        "name": {
+          "pt_BR": "Valores",
+          "en": "Values"
+        },
+        "description": {
+          "pt_BR": "Valores da linha", "en": "Row's values"
+        },
+        "field_type": "string"
+      }
+    ]
+  },
+  "configuration_fields": [
+    {
+      "key": "spreadsheetId",
+      "name": {"pt_BR": "planilha", "en": "spreadsheet"},
+      "description": {
+        "pt_BR": "planilha.",
+        "en": "spreadsheet."
+      },
+      "label": {
+        "pt_BR": "Selecione a planilha",
+        "en": "Select the spreadsheet"
+      },
+      "placeholder": {
+        "pt_BR": "Selecione a planilha",
+        "en": "Select the spreadsheet"
+      },
+      "description": {
+        "pt_BR": "Selecione a planilha que será usado para recuperar as informações",
+        "en": "Select spreadsheet that will be used to retrieve the information"
+      },
+      "required": true,
+      "visible": true,
+      "field_type": "dropdown",
+      "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_spreadsheet_list"
+      }
+    },
+    {
+      "key": "sheetId",
+      "name": {"pt_BR": "folha", "en": "sheet"},
+      "description": {
+        "pt_BR": "folha.",
+        "en": "sheet."
+      },
+      "label": {
+        "pt_BR": "Selecione a folha",
+        "en": "Select the sheet"
+      },
+      "placeholder": {
+        "pt_BR": "Selecione a folha",
+        "en": "Select the sheet"
+      },
+      "required": true,
+      "visible": true,
+      "field_type": "dropdown",
+      "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_sheet_list"
+      }
+    }
+  ],
+  "trigger_type":"rest_hook",
+  "webhook":{
+    "message_type":"object",
+    "rest_hook_config":{
+      "create": {
+        "verb": "POST",
+        "method_name": "/drive/v3/files/{spreadsheetId}/watch",
+        "extra_params": [
+          {"key": "spreadsheetId"}
+        ],
+        "params": {
+          "kind": "api#channel",
+          "base_url_prefix": "www",
+          "id": "client_id_para_a_pluga",
+          "type": "web_hook",
+          "address": "https://ada54ba9.ngrok.io/v1/webhooks"
+        },
+        "json_api": true
+      },
+      "delete":{
+        "verb":"DELETE",
+        "method_name":"/webhooks/{id}",
+        "params":{
+          "force": "true"
+        },
+        "json_api": true
+      },
+      "meta_params":{
+        "webhook_id":"id",
+        "webhook_url":"delivery_url"
+      }
+    },
+    "event_filter": {
+      "field": "status",
+      "events": ["pending", "on-hold"]
+    },
+    "idempotent":[
+      {"type":"body", "field":"id"}
+    ]
+  }
+}
