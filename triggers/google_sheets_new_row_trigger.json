@@ -9,22 +9,10 @@
     "en": "For each new linha added"
   },
   "trigger_fields": {
-    "type": "local",
-    "fields": [
-      {
-        "key": "values",
-        "source": "format_date(source[:values))",
-        "force_source": true,
-        "name": {
-          "pt_BR": "Valores",
-          "en": "Values"
-        },
-        "description": {
-          "pt_BR": "Valores da linha", "en": "Row's values"
-        },
-        "field_type": "string"
-      }
-    ]
+    "type": "remote",
+    "request": {
+      "params": { "spreadsheetId": null, "sheetId": null }
+    }
   },
   "configuration_fields": [
     {
@@ -91,25 +79,24 @@
           {"key": "spreadsheetId"}
         ],
         "params": {
-          "kind": "api#channel",
           "base_url_prefix": "www",
-          "id": "client_id_para_a_pluga",
           "type": "web_hook",
-          "address": "https://ada54ba9.ngrok.io/v1/webhooks"
+          "id": "{uuid}"
         },
         "json_api": true
       },
       "delete":{
-        "verb":"DELETE",
-        "method_name":"/webhooks/{id}",
+        "verb":"POST",
+        "method_name":"/drive/v3/channels/stop",
         "params":{
-          "force": "true"
+          "base_url_prefix": "www",
+          "id": "{uuid}"
         },
         "json_api": true
       },
       "meta_params":{
-        "webhook_id":"id",
-        "webhook_url":"delivery_url"
+        "webhook_id":"resourceId",
+        "webhook_url":"address"
       }
     },
     "event_filter": {
