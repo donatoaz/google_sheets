@@ -101,7 +101,7 @@
       }
     },
     "idempotent":[
-      {"type":"body", "field":"id"}
+      {"type":"body", "field":"row"}
     ]
   }
 }
