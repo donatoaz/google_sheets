@@ -12,7 +12,8 @@
     "type": "remote",
     "request": {
       "params": { "spreadsheetId": null, "sheetId": null }
-    }
+    },
+    "fields": []
   },
   "configuration_fields": [
     {
@@ -98,10 +99,6 @@
         "webhook_id":"resourceId",
         "webhook_url":"address"
       }
-    },
-    "event_filter": {
-      "field": "status",
-      "events": ["pending", "on-hold"]
     },
     "idempotent":[
       {"type":"body", "field":"id"}
