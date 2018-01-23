@@ -11,7 +11,7 @@
   "trigger_fields": {
     "type": "remote",
     "request": {
-      "params": { "spreadsheetId": null, "sheetId": null }
+      "params": { "spreadsheetId": null, "sheetId": null, "triggerColumn": null }
     },
     "fields": []
   },
@@ -66,6 +66,29 @@
       "list": {
         "type": "remote",
         "helper_method": "google_sheets_sheet_list"
+      }
+    },
+    {
+      "key": "triggerColumn",
+      "name": {"pt_BR": "Trigger Column", "en": "Trigger Column"},
+      "description": {
+        "pt_BR": "trigger column.",
+        "en": "trigger column."
+      },
+      "label": {
+        "pt_BR": "Selecione a trigger column",
+        "en": "Select the trigger column"
+      },
+      "placeholder": {
+        "pt_BR": "Selecione a trigger column",
+        "en": "Select the trigger column"
+      },
+      "visible": true,
+      "field_type": "dropdown",
+      "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_column_list"
       }
     }
   ],
