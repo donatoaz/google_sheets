@@ -96,7 +96,7 @@
   "idempotent": [
     {
       "type": "body",
-      "field": "id"
+      "field": "row"
     }
   ],
   "request": {
@@ -106,7 +106,7 @@
     ],
     "params": {
       "base_url_prefix": "www",
-      "fields": "nextPageToken,revisions(id,modifiedTime)",
+      "fields": "nextPageToken,revisions(modifiedTime)",
       "pageSize": 10
     },
     "json_api": true
