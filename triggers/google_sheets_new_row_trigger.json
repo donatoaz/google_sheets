@@ -92,39 +92,23 @@
       }
     }
   ],
-  "trigger_type":"rest_hook",
-  "webhook":{
-    "message_type":"object",
-    "rest_hook_config":{
-      "create": {
-        "verb": "POST",
-        "method_name": "/drive/v3/files/{spreadsheetId}/watch",
-        "extra_params": [
-          {"key": "spreadsheetId"}
-        ],
-        "params": {
-          "base_url_prefix": "www",
-          "type": "web_hook",
-          "id": "{uuid}"
-        },
-        "json_api": true
-      },
-      "delete":{
-        "verb":"POST",
-        "method_name":"/drive/v3/channels/stop",
-        "params":{
-          "base_url_prefix": "www",
-          "id": "{uuid}"
-        },
-        "json_api": true
-      },
-      "meta_params":{
-        "webhook_id":"resourceId",
-        "webhook_url":"address"
-      }
+  "trigger_type":"polling",
+  "idempotent": [
+    {
+      "type": "body",
+      "field": "id"
+    }
+  ],
+  "request": {
+    "method_name": "/drive/v3/files/{spreadsheetId}/revisions",
+    "extra_params": [
+      {"key": "spreadsheetId"}
+    ],
+    "params": {
+      "base_url_prefix": "www",
+      "fields": "nextPageToken,revisions(id,modifiedTime)",
+      "pageSize": 10
     },
-    "idempotent":[
-      {"type":"body", "field":"row"}
-    ]
+    "json_api": true
   }
 }
