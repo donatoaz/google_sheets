@@ -107,7 +107,7 @@
     "params": {
       "base_url_prefix": "www",
       "fields": "nextPageToken,revisions(modifiedTime)",
-      "pageSize": 100
+      "pageSize": 1000
     },
     "json_api": true
   }
