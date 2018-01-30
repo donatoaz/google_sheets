@@ -98,17 +98,5 @@
       "type": "body",
       "field": "row"
     }
-  ],
-  "request": {
-    "method_name": "/drive/v3/files/{spreadsheetId}/revisions",
-    "extra_params": [
-      {"key": "spreadsheetId"}
-    ],
-    "params": {
-      "base_url_prefix": "www",
-      "fields": "nextPageToken,revisions(modifiedTime)",
-      "pageSize": 1000
-    },
-    "json_api": true
-  }
+  ]
 }
