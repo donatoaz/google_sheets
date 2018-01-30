@@ -1,0 +1,148 @@
+{
+  "name": {
+    "pt_BR": "inserir uma nova linha em uma planilha",
+    "en": "insert a new row in a spreadsheet"
+  },
+  "action_key": "insert_row",
+  "description": {
+    "pt_BR": "inserir uma nova linha em uma planilha",
+    "en": "insert a new row in a spreadsheet"
+  },
+  "action_fields": {
+    "fields": [
+      {
+        "key": "spreadsheetId",
+        "name": {"pt_BR": "planilha", "en": "spreadsheet"},
+        "description": {
+          "pt_BR": "planilha.",
+          "en": "spreadsheet."
+        },
+        "label": {
+          "pt_BR": "Selecione a planilha",
+          "en": "Select the spreadsheet"
+        },
+        "placeholder": {
+          "pt_BR": "Selecione a planilha",
+          "en": "Select the spreadsheet"
+        },
+        "required": true,
+        "visible": true,
+        "advanced": false,
+        "field_type": "dropdown",
+        "data_type": "string",
+        "list": {
+          "type": "remote",
+          "helper_method": "google_sheets_spreadsheet_list"
+        },
+        "not_include_field_in_request": true
+      },
+      {
+        "key": "sheetId",
+        "name": {"pt_BR": "folha", "en": "sheet"},
+        "description": {
+          "pt_BR": "folha.",
+          "en": "sheet."
+        },
+        "label": {
+          "pt_BR": "Selecione a folha",
+          "en": "Select the sheet"
+        },
+        "placeholder": {
+          "pt_BR": "Selecione a folha",
+          "en": "Select the sheet"
+        },
+        "required": true,
+        "visible": true,
+        "advanced": false,
+        "field_type": "dropdown",
+        "data_type": "string",
+        "list": {
+          "type": "remote",
+          "helper_method": "google_sheets_sheet_list"
+        },
+        "not_include_field_in_request": true
+      },
+      {
+        "key": "columns",
+        "name": {"pt_BR": "Colunas", "en": "Columns"},
+        "description": {
+          "pt_BR": "Colunas onde serão inseridas as informações.",
+          "en": "Columns where the information will be inserted"
+        },
+        "required": false,
+        "visible": true,
+        "advanced": true,
+        "field_type": "list",
+        "data_type": "array",
+        "sub_field": {
+          "key": "column",
+          "name": {"pt_BR": "Coluna", "en": "Column"},
+          "description": {"pt_BR": "Coluna", "en": "Column"},
+          "required": false,
+          "visible": true,
+          "field_type": "composed",
+          "data_type": "array",
+          "fields": [
+            {"name": "label", "visible": true, "field_type": "string"},
+            {"name": "column", "visible": true, "field_type": "custom"}
+          ]
+        }
+      },
+      {
+        "key": "sheetTitle"
+      },
+      {
+        "key": "values"
+      }
+    ]
+  },
+  "request": {
+    "verb": "post",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1:append?valueInputOption=RAW",
+    "params": {
+      "base_url_prefix": "sheets",
+      "spreadsheetId": "{spreadsheetId}"
+    },
+    "custom_params": [
+      {"name": "sheetTitle", "value": "URI.encode( data[:sheetTitle] )"},
+      {"name": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:data]} ]"}
+    ],
+    "json_api": true,
+    "pre_hooks": {
+      "hooks": [
+        {
+          "name": "Buscar Sheet",
+          "request": {
+            "verb": "get",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}",
+            "params": [
+              {"field": "spreadsheetId", "value": "{spreadsheetId}", "type": "string"},
+              {"field": "base_url_prefix", "value": "sheets"},
+              {"field": "fields", "value": "sheets/properties", "type": "string"}
+            ],
+            "response_field": ["sheets"],
+            "append_params": [
+              {"name": "sheetTitle", "value": "data[:hook].select{|h| h[:properties][:sheetId].to_s == data[:sheetId] }[0][:properties][:title]"}
+            ],
+            "remove_params": ["sheetId"],
+            "json_api": true
+          }
+        },
+        {
+          "name": "Atualizar Cabeçalho",
+          "request": {
+            "verb": "put",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1?valueInputOption=RAW",
+            "params": [
+              {"field": "base_url_prefix", "value": "sheets"},
+              {"field": "spreadsheetId", "value": "{spreadsheetId}"},
+              {"field": "sheetTitle", "value": "URI.encode( data[:sheetTitle] )", "custom": true},
+              {"field": "values", "value": "[ data.select{|k| /column_/ =~ k.to_s}.values.map{|v| eval(v)[:label]} ]", "custom": true}
+            ],
+            "json_api": true
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "lista das colunas das folhas de uma planilha",
+  "helper_method_key": "google_sheets_column_list",
+  "requests": [
+    {
+      "method_name": "",
+      "params": {
+        "spreadsheetId": "{spreadsheetId}",
+        "sheetId": "{sheetId}"
+      },
+      "response_field": "",
+      "mapping": {
+        "label": {
+          "fields": []
+        },
+        "value": {
+          "field": ""
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "name": {
+    "pt_BR": "nova linha adicionada",
+    "en": "new row added"
+  },
+  "trigger_key": "new_row",
+  "description": {
+    "pt_br": "Para cada nova linha adicionado",
+    "en": "For each new linha added"
+  },
+  "trigger_fields": {
+    "type": "remote",
+    "request": {
+      "params": { "spreadsheetId": null, "sheetId": null, "triggerColumn": null }
+    },
+    "fields": []
+  },
+  "configuration_fields": [
+    {
+      "key": "spreadsheetId",
+      "name": {"pt_BR": "planilha", "en": "spreadsheet"},
+      "description": {
+        "pt_BR": "planilha.",
+        "en": "spreadsheet."
+      },
+      "label": {
+        "pt_BR": "Selecione a planilha",
+        "en": "Select the spreadsheet"
+      },
+      "placeholder": {
+        "pt_BR": "Selecione a planilha",
+        "en": "Select the spreadsheet"
+      },
+      "description": {
+        "pt_BR": "Selecione a planilha que será usado para recuperar as informações",
+        "en": "Select spreadsheet that will be used to retrieve the information"
+      },
+      "required": true,
+      "visible": true,
+      "field_type": "dropdown",
+      "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_spreadsheet_list"
+      }
+    },
+    {
+      "key": "sheetId",
+      "name": {"pt_BR": "folha", "en": "sheet"},
+      "description": {
+        "pt_BR": "folha.",
+        "en": "sheet."
+      },
+      "label": {
+        "pt_BR": "Selecione a folha",
+        "en": "Select the sheet"
+      },
+      "placeholder": {
+        "pt_BR": "Selecione a folha",
+        "en": "Select the sheet"
+      },
+      "required": true,
+      "visible": true,
+      "field_type": "dropdown",
+      "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_sheet_list"
+      }
+    },
+    {
+      "key": "triggerColumn",
+      "name": {"pt_BR": "Trigger Column", "en": "Trigger Column"},
+      "description": {
+        "pt_BR": "trigger column.",
+        "en": "trigger column."
+      },
+      "label": {
+        "pt_BR": "Selecione a trigger column",
+        "en": "Select the trigger column"
+      },
+      "placeholder": {
+        "pt_BR": "Selecione a trigger column",
+        "en": "Select the trigger column"
+      },
+      "visible": true,
+      "field_type": "dropdown",
+      "data_type": "string",
+      "list": {
+        "type": "remote",
+        "helper_method": "google_sheets_column_list"
+      }
+    }
+  ],
+  "trigger_type":"polling",
+  "idempotent": [
+    {
+      "type": "body",
+      "field": "row"
+    }
+  ]
+}
