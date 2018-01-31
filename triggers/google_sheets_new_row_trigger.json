@@ -70,17 +70,20 @@
     },
     {
       "key": "triggerColumn",
-      "name": {"pt_BR": "Trigger Column", "en": "Trigger Column"},
+      "name": {
+        "pt_BR": "Coluna Gatilho",
+        "en": "Trigger Column"
+      },
       "description": {
-        "pt_BR": "trigger column.",
-        "en": "trigger column."
+        "pt_BR": "A coluna gatilho é a coluna que dispara a sua automatização. Quando a coluna gatilho, de uma novo linha, for preenchida a Pluga assumirá que a linha foi completada com todas as informações necessárias.",
+        "en": "The trigger column is the column that triggers your automation. When the trigger column of a new line is filled, Pluga will assume that the line has been completed with all necessary information."
       },
       "label": {
-        "pt_BR": "Selecione a trigger column",
+        "pt_BR": "Selecione a coluna gatilho",
         "en": "Select the trigger column"
       },
       "placeholder": {
-        "pt_BR": "Selecione a trigger column",
+        "pt_BR": "Selecione a coluna gatilho",
         "en": "Select the trigger column"
       },
       "visible": true,
