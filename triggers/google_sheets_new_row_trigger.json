@@ -25,15 +25,15 @@
       },
       "label": {
         "pt_BR": "Selecione a planilha",
-        "en": "Select the spreadsheet"
+        "en": "Select spreadsheet"
       },
       "placeholder": {
-        "pt_BR": "Selecione a planilha",
-        "en": "Select the spreadsheet"
+        "pt_BR": "Selecionar planilha",
+        "en": "Select spreadsheet"
       },
       "description": {
-        "pt_BR": "Selecione a planilha que será usado para recuperar as informações",
-        "en": "Select spreadsheet that will be used to retrieve the information"
+        "pt_BR": "Selecione a planilha que será usada para recuperar as informações.",
+        "en": "Select spreadsheet that will be used to retrieve the information."
       },
       "required": true,
       "visible": true,
@@ -48,16 +48,16 @@
       "key": "sheetId",
       "name": {"pt_BR": "folha", "en": "sheet"},
       "description": {
-        "pt_BR": "folha.",
-        "en": "sheet."
+        "pt_BR": "É a aba da sua planilha em que os dados serão inseridos.",
+        "en": "It is the tab of your spreadsheet where the data will be inserted."
       },
       "label": {
-        "pt_BR": "Selecione a folha",
-        "en": "Select the sheet"
+        "pt_BR": "Selecione a página",
+        "en": "Select sheet"
       },
       "placeholder": {
-        "pt_BR": "Selecione a folha",
-        "en": "Select the sheet"
+        "pt_BR": "Selecionar página",
+        "en": "Select sheet"
       },
       "required": true,
       "visible": true,
@@ -75,17 +75,18 @@
         "en": "Trigger Column"
       },
       "description": {
-        "pt_BR": "A coluna gatilho é a coluna que dispara a sua automatização. Quando a coluna gatilho, de uma novo linha, for preenchida a Pluga assumirá que a linha foi completada com todas as informações necessárias.",
-        "en": "The trigger column is the column that triggers your automation. When the trigger column of a new line is filled, Pluga will assume that the line has been completed with all necessary information."
+        "pt_BR": "A coluna gatilho é a coluna que dispara a sua automatização. Quando a coluna gatilho de uma nova linha for preenchida, a Pluga assumirá que a linha foi preenchida por completo e executará a automatização.",
+        "en": "The trigger column is the column that triggers your automation. When the trigger column of a new line is filled, Pluga will assume that the line has been completely filled and will execute the automation."
       },
       "label": {
         "pt_BR": "Selecione a coluna gatilho",
-        "en": "Select the trigger column"
+        "en": "Select trigger column"
       },
       "placeholder": {
-        "pt_BR": "Selecione a coluna gatilho",
-        "en": "Select the trigger column"
+        "pt_BR": "Selecionar coluna gatilho",
+        "en": "Select trigger column"
       },
+      "required": true,
       "visible": true,
       "field_type": "dropdown",
       "data_type": "string",
