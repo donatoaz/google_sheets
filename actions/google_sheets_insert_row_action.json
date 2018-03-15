@@ -122,7 +122,7 @@
             ],
             "response_field": ["sheets"],
             "append_params": [
-              {"name": "sheetTitle", "value": "data[:hook].find{|h|h[:properties][:sheetId].to_s == data[:sheetId]}.try{|h|h[:properties][:title]}"}
+              {"name": "sheetTitle", "value": "data[:hook].find{|h|h[:properties][:sheetId].to_i==data[:sheetId].to_i}.try{|h|h[:properties][:title]}"}
             ],
             "remove_params": ["sheetId"],
             "json_api": true
