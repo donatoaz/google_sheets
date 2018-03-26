@@ -98,7 +98,7 @@
   },
   "request": {
     "verb": "post",
-    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1:append?valueInputOption=RAW",
+    "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1:append?valueInputOption=USER_ENTERED",
     "params": {
       "base_url_prefix": "sheets",
       "spreadsheetId": "{spreadsheetId}"
@@ -132,7 +132,7 @@
           "name": "Atualizar Cabeçalho",
           "request": {
             "verb": "put",
-            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1?valueInputOption=RAW",
+            "method_name": "/v4/spreadsheets/{spreadsheetId}/values/'{sheetTitle}'!A1?valueInputOption=USER_ENTERED",
             "params": [
               {"field": "base_url_prefix", "value": "sheets"},
               {"field": "spreadsheetId", "value": "{spreadsheetId}"},
