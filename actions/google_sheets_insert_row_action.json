@@ -108,7 +108,7 @@
       {"name": "values", "value": "[data.select{|k|/column_/ =~ k.to_s}.values.map{|v|eval(v)[:data]}]"}
     ],
     "json_api": true,
-    "error_fields": ["error", "message"]
+    "error_fields": ["error", "message"],
     "pre_hooks": {
       "hooks": [
         {
