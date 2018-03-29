@@ -108,6 +108,7 @@
       {"name": "values", "value": "[data.select{|k|/column_/ =~ k.to_s}.values.map{|v|eval(v)[:data]}]"}
     ],
     "json_api": true,
+    "error_fields": ["error", "message"]
     "pre_hooks": {
       "hooks": [
         {
@@ -125,7 +126,8 @@
               {"name": "sheetTitle", "value": "data[:hook].find{|h|h[:properties][:sheetId].to_i==data[:sheetId].to_i}.try{|h|h[:properties][:title]}"}
             ],
             "remove_params": ["sheetId"],
-            "json_api": true
+            "json_api": true,
+            "error_fields": ["error", "message"]
           }
         },
         {
@@ -139,7 +141,8 @@
               {"field": "sheetTitle", "value": "URI.encode(data[:sheetTitle])", "custom": true},
               {"field": "values", "value": "[data.select{|k|/column_/ =~ k.to_s}.values.map{|v|eval(v)[:label]}]", "custom": true}
             ],
-            "json_api": true
+            "json_api": true,
+            "error_fields": ["error", "message"]
           }
         }
       ]
