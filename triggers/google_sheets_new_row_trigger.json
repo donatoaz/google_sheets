@@ -19,10 +19,6 @@
     {
       "key": "spreadsheetId",
       "name": {"pt_BR": "planilha", "en": "spreadsheet"},
-      "description": {
-        "pt_BR": "planilha.",
-        "en": "spreadsheet."
-      },
       "label": {
         "pt_BR": "Selecione a planilha",
         "en": "Select spreadsheet"
